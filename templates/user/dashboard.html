@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../../static/dashboad.css" />
+    <link rel="script" href="../../main.py" />
+    <title>Number Guessing Game</title>
+  </head>
+  <body>
+    <h2>Hello {{ session.username }}</h2>
+    <div class="dropdown">
+      <button
+        class="btn btn-info dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Options
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/user/update-profile">Update Profile</a>
+        <a class="dropdown-item" href="/user/change-password"
+          >Change Password</a
+        >
+        <a class="dropdown-item" href="leaderboard.html">Leaderboard</a>
+        <a class="dropdown-item" href="/user/logout">Logout</a>
+      </div>
+    </div>
+    <div class="guess">
+      <h1>Peek-a-Pick!</h1>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="difficultyDropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Select Difficulty
+        </button>
+        <div class="dropdown-menu" aria-labelledby="difficultyDropdown">
+          <a class="dropdown-item" href="#" onclick="changeDifficulty('low')"
+            >Low (1-99)</a
+          >
+          <a
+            class="dropdown-item"
+            href="#"
+            onclick="changeDifficulty('moderate')"
+            >Moderate (1-999)</a
+          >
+          <a class="dropdown-item" href="#" onclick="changeDifficulty('expert')"
+            >Expert (1-9999)</a
+          >
+        </div>
+      </div>
+      <p class="game_details" id="gameDetails">
+        Guess the secret number between 1 to 100 in just 10 tries!
+      </p>
+      <form action="/user/dashboard" class="form" method="post">
+        <div class="guess_area">
+          <label for="guess"><strong>Take a guess:</strong></label>
+          <input type="text" name="guess" id="guess" class="input_number" />
+          <input type="hidden" name="difficulty" id="difficulty" value="low" />
+        </div>
+        <input type="submit" value="Guess" class="guess_button" />
+      </form>
+      <div class="result">
+        {% with messages=get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %} {% endif %} {% endwith %} {% if 'guess' in session: %} {%
+        if session['guess'] == session['guess_num'] %}
+        <div class="message">
+          <h3>Woo hoo! Right number!!!</h3>
+          <a href="/reset" class="button">Try again!</a>
+          <p class="guess_detail">You guessed {{ session['count'] }} time(s)</p>
+          <form action="/insert_name" method="post">
+            <label class="guess_detail">Winner name:</label>
+            <input type="text" name="name" />
+            <input type="submit" value="Submit" class="submit_button" />
+          </form>
+        </div>
+        {% elif session['guess'] > session['guess_num'] %}
+        <div class="message">
+          <h3>Toooooooooo High!!!</h3>
+          <p class="guess_detail">
+            Attempts remaining: {{ session['max_attempts'] - session['count'] }}
+          </p>
+          {% if session['count'] >= session['max_attempts'] %}
+          <h3 class="win_or_lose">YOU LOSE!!!</h3>
+          <p class="guess_detail">Better luck next time!</p>
+          <a href="/reset" class="button">Try again!</a>
+          {% endif %}
+        </div>
+        {% elif session['guess'] < session['guess_num'] %}
+        <div class="message">
+          <h3>Toooooooooo Low!!!</h3>
+          <p class="guess_detail">
+            Attempts remaining: {{ session['max_attempts'] - session['count'] }}
+          </p>
+          {% if session['count'] >= session['max_attempts'] %}
+          <h3 class="win_or_lose">YOU LOSE!!!</h3>
+          <p class="guess_detail">Better luck next time!</p>
+          <a href="/reset" class="button">Try again!</a>
+          {% endif %}
+        </div>
+        {% endif %} {% endif %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      function changeDifficulty(difficulty) {
+        var gameDetails = document.getElementById("gameDetails");
+        var difficultyInput = document.getElementById("difficulty");
+        difficultyInput.value = difficulty;
+
+        if (difficulty === "low") {
+          gameDetails.textContent =
+            "Guess the secret number between 1 to 99 in just 10 tries!";
+        } else if (difficulty === "moderate") {
+          gameDetails.textContent =
+            "Guess the secret number between 1 to 999 in just 15 tries!";
+        } else {
+          gameDetails.textContent =
+            "Guess the secret number between 1 to 9999 in just 20 tries!";
+        }
+      }
+    </script>
+  </body>
+</html>
