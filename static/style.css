@@ -4,8 +4,8 @@
   --mainColor: #64bcf4;
   --hoverColor: #5bacdf;
   --backgroundColor: #f1f8fc;
-  --darkOne: #312f3a;
-  --darkTwo: #45424b;
+  --darkOne: #162833;
+  --darkTwo: #192e3a;
   --lightOne: #919191;
   --lightTwo: #aaa;
 }
@@ -44,20 +44,25 @@ a {
   width: 100%;
   background-color: var(--backgroundColor);
   overflow-x: hidden;
+  padding: 0 0 3% 0;
 }
 
 .container {
   position: relative;
   max-width: 81rem;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 Auto;
   padding: 0 3rem;
   z-index: 10;
 }
 
 header {
-  position: relative;
+  position: fixed;
   z-index: 70;
+  width: 100%;
+  background-color: var(--backgroundColor);
+  height: 60px;
+  padding-top: 14px;
 }
 
 header .container {
@@ -70,19 +75,19 @@ header .container {
   display: none;
 }
 
-.logo {
+.logo a{
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.logo img {
+.logo a img {
   width: 40px;
   margin-right: 0.6rem;
   margin-top: -0.6rem;
 }
 
-.logo h3 {
+.logo a h3 {
   color: var(--darkTwo);
   font-size: 1.55rem;
   line-height: 1.2;
@@ -384,7 +389,7 @@ header .container {
   .showcase-area {
     padding: 2.5rem 0;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 5% auto 0 auto;
   }
 
   .showcase-area .container {
@@ -407,7 +412,7 @@ header .container {
     transform: none;
   }
 
-  .logo h3 {
+  .logo a h3 {
     font-size: 1.25rem;
   }
 
@@ -581,15 +586,14 @@ header .container {
 .contact-section .contact-info {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   margin-bottom: 4rem;
 }
 
 .contact-section .contact-info .info-item {
-  padding: 1rem;
+  padding: 1rem 0rem;
   text-align: left;
   max-width: 300px;
-  margin: 0 1rem;
+  margin: 0 10px;
 }
 
 .contact-section .contact-info .info-item i {
@@ -687,7 +691,7 @@ header .container {
 }
 
 .footer {
-  background-color: var(--darkTwo);
+  background-color: var(--darkOne);
   padding: 4rem 0;
   color: var(--lightTwo);
   text-align: center;
@@ -695,7 +699,6 @@ header .container {
 
 .footer .container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   max-width: 800px;
   margin: 0 auto;
@@ -703,7 +706,7 @@ header .container {
 
 .footer .footer-section {
   flex: 0 0 33.33%;
-  padding: 0 1rem;
+  padding: 0 2rem;
   margin-bottom: 2rem;
 }
 
@@ -732,7 +735,7 @@ header .container {
 }
 
 .footer .footer-bottom {
-  background-color: var(--darkOne);
+  background-color: var(--darkTwo);
   padding: 1rem 0;
   text-align: center;
 }
@@ -772,14 +775,12 @@ header .container {
 }
 
 /* Media queries for responsiveness */
-@media screen and (max-width: 768px) {
-  .footer .footer-section {
-    flex: 0 0 50%;
-  }
-}
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 380px) {
   .footer .footer-section {
     flex: 0 0 100%;
   }
+  .footer .container{
+    flex-wrap: wrap;
+  }
 }
+
