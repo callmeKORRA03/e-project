@@ -75,7 +75,7 @@ header .container {
   display: none;
 }
 
-.logo a{
+.logo a {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -323,6 +323,7 @@ header .container {
   0% {
     clip-path: circle(30% at -25% -25%);
   }
+
   100% {
     clip-path: circle(150% at 0 0);
   }
@@ -358,6 +359,7 @@ header .container {
     margin-left: 0;
     padding: 2rem 0;
   }
+  
 
   .links .btn {
     background: none;
@@ -538,6 +540,7 @@ header .container {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -770,7 +773,8 @@ header .container {
 /* Add a media query for mobile view */
 @media (max-width: 768px) {
   .contact-section .contact-info {
-    flex-wrap: wrap; /* Change to wrap on mobile */
+    flex-wrap: wrap;
+    /* Change to wrap on mobile */
   }
 }
 
@@ -779,8 +783,75 @@ header .container {
   .footer .footer-section {
     flex: 0 0 100%;
   }
-  .footer .container{
+
+  .footer .container {
     flex-wrap: wrap;
   }
 }
 
+/* Game Page Navbar css */
+.user {
+  display: block;
+  cursor: pointer;
+}
+.user:hover .ls{
+  visibility: visible;
+  opacity: 1;
+}
+
+.ls {
+  display: block;
+  background-color: inherit;
+  position: absolute;
+  visibility: hidden;
+}
+
+.ls a {
+  text-decoration: none;
+  color: var(--lightTwo);
+  display: block;
+  transition: 0.3s;
+}
+.ls a:hover {
+  color: var(--hoverColor) !important;
+  transform: scale(1.05);
+}
+.user a i{
+  padding-left: 3px;
+  color:var(--lightTwo);
+}
+.user a{
+  color: var(--lightTwo) !important;
+}
+.user a:hover, .user a i:hover{
+  color: var(--hoverColor) !important;
+  transform: scale(1.05);
+}
+@media (max-width:870px){
+  .user {
+    display: block !important;
+  }
+  .user a i{
+    color:#fff;
+  }
+  .user a{
+    color: #fff !important;
+  }
+  .ls {
+    display: block;
+    position: absolute;
+    margin: -55px 0 0 60px !important;
+    padding: 0 !important;
+  }
+  
+  .ls a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 3px !important;
+  }
+  .ls a:hover {
+    color: var(--hoverColor) !important;
+    transform: scale(1.05);
+  }
+}

@@ -1,16 +1,32 @@
-body {
+
+:root {
+  --mainColor: #64bcf4;
+  --hoverColor: #5bacdf;
+  --backgroundColor: #f1f8fc;
+  --darkOne: #162833;
+  --darkTwo: #192e3a;
+  --lightOne: #919191;
+  --lightTwo: #aaa;
+}
+
+.dark {
+  --backgroundColor: #192e3a;
+  --darkOne: #f3f3f3;
+  --darkTwo: #fff;
+  --lightOne: #ccc;
+  --lightTwo: #e7e3e3;
+}
+/* .game{
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(102, 188, 175);
   align-items: center;
-  height: 600px;
   text-align: center;
-  background-repeat: repeat;
-  background-image: url(https://cdn.wallpapersafari.com/2/41/krmeh4.jpg);
   margin-top: 40px;
-}
+  margin-top:30px;
+} */
 
 h1 {
   font-size: 60px;
@@ -34,7 +50,8 @@ h1 {
   border-radius: 5px;
   transition: 0.5s;
   transition-property: box-shadow;
-  box-shadow: 2px 2px 2px 1px #000000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(2px);
   margin-top: 30px;
   font-size: 20px;
 }
@@ -55,7 +72,8 @@ h1 {
   border-radius: 5px;
   transition: 0.5s;
   transition-property: box-shadow;
-  box-shadow: 2px 2px 2px 1px #000000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(2px);
   margin-top: 30px;
   font-size: 20px;
 }
@@ -76,17 +94,20 @@ h1 {
   border-radius: 5px;
   transition: 0.5s;
   transition-property: box-shadow;
-  box-shadow: 2px 2px 2px 1px #000000;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(2px);
   margin-top: 30px;
   font-size: 20px;
 }
 
 .guess {
-  width: 800px;
-  background-color: #ffffff;
+  width: 100%;
+  background-color: var(--backgroundColor);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 4px 4px 4px 4px rgb(98, 85, 89);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(2px);
+  margin:5% 0% 0% 0%;
 }
 
 .win_or_lose {
@@ -94,7 +115,7 @@ h1 {
 }
 
 .game_details {
-  color: rgb(98, 85, 89);
+  color: var(--darkOne);
   font-weight: bold;
   font-size: 20px;
 }
@@ -110,7 +131,8 @@ h1 {
   font-size: 20px;
   color: rgb(54, 48, 50);
   font-weight: bold;
-  box-shadow: 4px 4px 4px 4px rgb(98, 85, 89);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(2px);
 }
 
 .guess_area {

@@ -7,29 +7,65 @@
     <link rel="stylesheet" type="text/css" href="../../static/dashboad.css" />
     <link rel="script" href="../../main.py" />
     <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../static/style.css" />
   </head>
   <body>
-    <h2>Hello {{ session.username }}</h2>
-    <div class="dropdown">
-      <button
-        class="btn btn-info dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Options
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/user/update-profile">Update Profile</a>
-        <a class="dropdown-item" href="/user/change-password"
-          >Change Password</a
-        >
-        <a class="dropdown-item" href="leaderboard.html">Leaderboard</a>
-        <a class="dropdown-item" href="/user/logout">Logout</a>
-      </div>
-    </div>
+    <main>
+      <div class="big-wrapper light">
+        <header>
+          <div class="container">
+            <div class="logo">
+              <a href="../../templates/index.html"
+                ><img src="../../static/img/logo.png" alt="Logo" />
+                <h3>Hello {{ session.username }}</h3>
+                </a
+              >
+              
+            </div>
+
+            <div class="links">
+              <ul>
+                <li><a href="#about-section">About Us</a></li>
+                <li>
+                  <a href="../../templates/index.html#how-to-play"
+                    >How to Play</a
+                  >
+                </li>
+                <li>
+                  <a href="../../templates/index.html#contact-section"
+                    >Contact Us</a
+                  >
+                </li>
+                <li class="user">
+                  <a> User <i class="fa fa-caret-down"></i></a>
+                  <div class="ls">
+                    <a href="/user/dashboard">Dashboard</a>
+                    <a href="/user/update-profile">Update Profile</a>
+                    <a href="/user/change-password">Change Password</a>
+                    <a href="/user/logout">Logout</a>
+                  </div>
+                </li>
+                
+
+                <!-- Theme button -->
+                <li style="margin-left: 2rem;">
+                  <button class="toggle-btn" id="theme-toggle">
+                    <i class="far fa-moon"></i>
+                    <i class="fas fa-sun" style="color: orange"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="overlay"></div>
+
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+          </div>
+        </header>
+
     <div class="guess">
       <h1>Peek-a-Pick!</h1>
       <div class="dropdown">
@@ -63,7 +99,7 @@
       </p>
       <form action="/user/dashboard" class="form" method="post">
         <div class="guess_area">
-          <label for="guess"><strong>Take a guess:</strong></label>
+          <label for="guess" style="color: var(--darkOne);"><strong>Take a guess:</strong></label>
           <input type="text" name="guess" id="guess" class="input_number" />
           <input type="hidden" name="difficulty" id="difficulty" value="low" />
         </div>
@@ -112,6 +148,59 @@
         {% endif %} {% endif %}
       </div>
     </div>
+    </div>
+  </main>
+    
+    
+     <!-- Footer -->
+     <footer class="footer">
+      <div class="container">
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <ul>
+            <li>
+              <a href="../../templates/index.html#about-section">About Us</a>
+            </li>
+            <li>
+              <a href="../../templates/index.html#how-to-play">How to Play</a>
+            </li>
+            <li>
+              <a href="../../templates/index.html#contact-section"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <ul>
+            <li>
+              <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Guess The Number. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="../../static/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
