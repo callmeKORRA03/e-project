@@ -7,7 +7,10 @@
     <link rel="stylesheet" type="text/css" href="../../static/dashboad.css" />
     <link rel="script" href="../../main.py" />
     <title>Number Guessing Game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="../../static/style.css" />
   </head>
   <body>
@@ -16,12 +19,10 @@
         <header>
           <div class="container">
             <div class="logo">
-              <a href="../../templates/index.html"
+              <a href="{{ url_for('index') }}"
                 ><img src="../../static/img/logo.png" alt="Logo" />
                 <h3>Hello {{ session.username }}</h3>
-                </a
-              >
-              
+              </a>
             </div>
 
             <div class="links">
@@ -36,6 +37,9 @@
                   <a href="../../templates/index.html#contact-section"
                     >Contact Us</a
                   >
+                  <a class="dropdown-item" href="leaderboard.html"
+                    >Leaderboard</a
+                  >
                 </li>
                 <li class="user">
                   <a> User <i class="fa fa-caret-down"></i></a>
@@ -46,10 +50,9 @@
                     <a href="/user/logout">Logout</a>
                   </div>
                 </li>
-                
 
                 <!-- Theme button -->
-                <li style="margin-left: 2rem;">
+                <li style="margin-left: 2rem">
                   <button class="toggle-btn" id="theme-toggle">
                     <i class="far fa-moon"></i>
                     <i class="fas fa-sun" style="color: orange"></i>
@@ -66,94 +69,112 @@
           </div>
         </header>
 
-    <div class="guess">
-      <h1>Peek-a-Pick!</h1>
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="difficultyDropdown"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Select Difficulty
-        </button>
-        <div class="dropdown-menu" aria-labelledby="difficultyDropdown">
-          <a class="dropdown-item" href="#" onclick="changeDifficulty('low')"
-            >Low (1-99)</a
-          >
-          <a
-            class="dropdown-item"
-            href="#"
-            onclick="changeDifficulty('moderate')"
-            >Moderate (1-999)</a
-          >
-          <a class="dropdown-item" href="#" onclick="changeDifficulty('expert')"
-            >Expert (1-9999)</a
-          >
-        </div>
-      </div>
-      <p class="game_details" id="gameDetails">
-        Guess the secret number between 1 to 100 in just 10 tries!
-      </p>
-      <form action="/user/dashboard" class="form" method="post">
-        <div class="guess_area">
-          <label for="guess" style="color: var(--darkOne);"><strong>Take a guess:</strong></label>
-          <input type="text" name="guess" id="guess" class="input_number" />
-          <input type="hidden" name="difficulty" id="difficulty" value="low" />
-        </div>
-        <input type="submit" value="Guess" class="guess_button" />
-      </form>
-      <div class="result">
-        {% with messages=get_flashed_messages(with_categories=true) %} {% if
-        messages %} {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %} {% endif %} {% endwith %} {% if 'guess' in session: %} {%
-        if session['guess'] == session['guess_num'] %}
-        <div class="message">
-          <h3>Woo hoo! Right number!!!</h3>
-          <a href="/reset" class="button">Try again!</a>
-          <p class="guess_detail">You guessed {{ session['count'] }} time(s)</p>
-          <form action="/insert_name" method="post">
-            <label class="guess_detail">Winner name:</label>
-            <input type="text" name="name" />
-            <input type="submit" value="Submit" class="submit_button" />
+        <div class="guess">
+          <h1>Peek-a-Pick!</h1>
+          <!-- <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="difficultyDropdown"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Select Difficulty
+            </button>
+            <div class="dropdown-menu" aria-labelledby="difficultyDropdown">
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="changeDifficulty('low')"
+                >Low (1-99)</a
+              >
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="changeDifficulty('moderate')"
+                >Moderate (1-999)</a
+              >
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="changeDifficulty('expert')"
+                >Expert (1-9999)</a
+              >
+            </div>
+          </div> -->
+          <p class="game_details" id="gameDetails">
+            Guess the secret number between 1 to 100 in just 10 tries!
+          </p>
+
+          <form action="/user/dashboard" class="form" method="post">
+            <div class="guess_area">
+              <label for="guess" style="color: var(--darkOne)"
+                ><strong>Take a guess:</strong></label
+              >
+              <input type="text" name="guess" id="guess" class="input_number" />
+              <input
+                type="hidden"
+                name="difficulty"
+                id="difficulty"
+                value="low"
+              />
+            </div>
+            <input type="submit" value="Guess" class="guess_button" />
           </form>
+
+          <div class="result">
+            {% with messages=get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %} {% endif %} {% endwith %} {% if 'guess' in session: %}
+            {% if session['guess'] == session['guess_num'] %}
+            <div class="message">
+              <h3>Woo hoo! Right number!!!</h3>
+              <a href="/reset" class="button">Try again!</a>
+              <p class="guess_detail">
+                You guessed {{ session['count'] }} time(s)
+              </p>
+              <form action="/insert_name" method="post">
+                <label class="guess_detail">Winner name:</label>
+                <input type="text" name="name" />
+                <input type="submit" value="Submit" class="submit_button" />
+              </form>
+            </div>
+            {% elif session['guess'] > session['guess_num'] %}
+            <div class="message">
+              <h3>Toooooooooo High!!!</h3>
+              <p class="guess_detail">
+                Attempts remaining: {{ session['max_attempts'] -
+                session['count'] }}
+              </p>
+              {% if session['count'] >= session['max_attempts'] %}
+              <h3 class="win_or_lose">YOU LOSE!!!</h3>
+              <p class="guess_detail">Better luck next time!</p>
+              <a href="/reset" class="button">Try again!</a>
+              {% endif %}
+            </div>
+            {% elif session['guess'] < session['guess_num'] %}
+            <div class="message">
+              <h3>Toooooooooo Low!!!</h3>
+              <p class="guess_detail">
+                Attempts remaining: {{ session['max_attempts'] -
+                session['count'] }}
+              </p>
+              {% if session['count'] >= session['max_attempts'] %}
+              <h3 class="win_or_lose">YOU LOSE!!!</h3>
+              <p class="guess_detail">Better luck next time!</p>
+              <a href="/reset" class="button">Try again!</a>
+              {% endif %}
+            </div>
+            {% endif %} {% endif %}
+          </div>
         </div>
-        {% elif session['guess'] > session['guess_num'] %}
-        <div class="message">
-          <h3>Toooooooooo High!!!</h3>
-          <p class="guess_detail">
-            Attempts remaining: {{ session['max_attempts'] - session['count'] }}
-          </p>
-          {% if session['count'] >= session['max_attempts'] %}
-          <h3 class="win_or_lose">YOU LOSE!!!</h3>
-          <p class="guess_detail">Better luck next time!</p>
-          <a href="/reset" class="button">Try again!</a>
-          {% endif %}
-        </div>
-        {% elif session['guess'] < session['guess_num'] %}
-        <div class="message">
-          <h3>Toooooooooo Low!!!</h3>
-          <p class="guess_detail">
-            Attempts remaining: {{ session['max_attempts'] - session['count'] }}
-          </p>
-          {% if session['count'] >= session['max_attempts'] %}
-          <h3 class="win_or_lose">YOU LOSE!!!</h3>
-          <p class="guess_detail">Better luck next time!</p>
-          <a href="/reset" class="button">Try again!</a>
-          {% endif %}
-        </div>
-        {% endif %} {% endif %}
       </div>
-    </div>
-    </div>
-  </main>
-    
-    
-     <!-- Footer -->
-     <footer class="footer">
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
       <div class="container">
         <div class="footer-section">
           <h4>Navigation</h4>

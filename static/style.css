@@ -359,7 +359,6 @@ header .container {
     margin-left: 0;
     padding: 2rem 0;
   }
-  
 
   .links .btn {
     background: none;
@@ -794,7 +793,7 @@ header .container {
   display: block;
   cursor: pointer;
 }
-.user:hover .ls{
+.user:hover .ls {
   visibility: visible;
   opacity: 1;
 }
@@ -816,25 +815,26 @@ header .container {
   color: var(--hoverColor) !important;
   transform: scale(1.05);
 }
-.user a i{
+.user a i {
   padding-left: 3px;
-  color:var(--lightTwo);
+  color: var(--lightTwo);
 }
-.user a{
+.user a {
   color: var(--lightTwo) !important;
 }
-.user a:hover, .user a i:hover{
+.user a:hover,
+.user a i:hover {
   color: var(--hoverColor) !important;
   transform: scale(1.05);
 }
-@media (max-width:870px){
+@media (max-width: 870px) {
   .user {
     display: block !important;
   }
-  .user a i{
-    color:#fff;
+  .user a i {
+    color: #fff;
   }
-  .user a{
+  .user a {
     color: #fff !important;
   }
   .ls {
@@ -843,7 +843,7 @@ header .container {
     margin: -55px 0 0 60px !important;
     padding: 0 !important;
   }
-  
+
   .ls a {
     text-decoration: none;
     color: #fff;

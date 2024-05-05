@@ -1,28 +1,39 @@
-<!-- <!-- {% extends "layout.html" %} {% block content %}
-<div class="container">
-  <h4 class="text-center my-3">Leaderboard</h4>
-  <div class="row d-flex justify-content-center">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Username</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for winner in winners %}
-              <tr>
-                <td>{{ winner.username }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='leaderboard.css') }}"
+    />
+  </head>
+  <body>
+    <div class="leaderboard-container">
+      <h1>Leaderboard</h1>
+      <div class="leaderboard-header">
+        <div class="leaderboard-header-item">Rank</div>
+        <div class="leaderboard-header-item">Name</div>
+        <div class="leaderboard-header-item">Score</div>
+      </div>
+      <div class="leaderboard-body">
+        {% for winner in prepopulated_winners %}
+        <div class="leaderboard-row">
+          <div class="leaderboard-item">{{ loop.index }}</div>
+          <div class="leaderboard-item">{{ winner.name }}</div>
+          <div class="leaderboard-item">{{ winner.score }}</div>
         </div>
+        {% endfor %} {% for user in user_winners %}
+        <div class="leaderboard-row">
+          <div class="leaderboard-item">
+            {{ loop.index + prepopulated_winners|length }}
+          </div>
+          <div class="leaderboard-item">{{ user.username }}</div>
+          <div class="leaderboard-item">{{ user.score }}</div>
+        </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
-</div>
-{% endblock content %} -->
--->
+  </body>
+</html>
