@@ -1,47 +1,131 @@
 {% extends "user/layout.html"%} {% block content %}
-<div class="container">
-  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
-  <h1 class="text-center my-3">User Login</h1>
-  <div class="row d-flex justify-content-center">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-      {% with messages=get_flashed_messages(with_categories=true) %} {% if
-      messages %} {% for category,message in messages %}
-      <div class="alert alert-{{category}}">
-        <strong>{{message}}</strong>
-      </div>
-      {% endfor %} {% endif %} {% endwith %}
-      <div class="card">
-        <div class="card-body">
-          <form action="" method="POST">
-            <div class="my-2">
-              <label for=""><b>Enter Your Email</b></label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="form-control my-1"
-              />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <main>
+      <div class="big-wrapper light">
+        <!-- <img src="../static/img/shape.png" alt="" class="shape" /> -->
+
+        <header>
+          <div class="container">
+            <div class="logo">
+              <a href="../templates/index.html"
+                ><img src="../../static/img/logo.png" alt="Logo" />
+                <h3>Guess The Number</h3></a
+              >
             </div>
-            <div class="my-2">
-              <label for=""><b>Enter Your Password</b></label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                class="form-control my-1"
-              />
+
+            <div class="links">
+              <ul>
+                <li><a href="../../templates/index.html#about-section">About Us</a></li>
+                <li><a href="../../templates/index.html#how-to-play">How to Play</a></li>
+                <li><a href="../../templates/index.html#contact-section">Contact Us</a></li>
+                <li><a href="/user/signup" class="btn">Sign Up</a></li>
+                <!-- Theme button -->
+                <li>
+                  <button class="toggle-btn" id="theme-toggle">
+                    <i class="far fa-moon"></i>
+                    <i class="fas fa-sun" style="color: orange"></i>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <button class="btn btn-success">Login</button>
-            <span class="d-flex align-items-center"
-              >If you have't Account ?
-              <a href="/user/signup" class="text-center nav-link"
-                >Signup</a
-              ></span
-            >
-          </form>
+
+            <div class="overlay"></div>
+
+            <div class="hamburger-menu">
+              <div class="bar"></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="container">
+          <h1 class="text-center my-3">User Login</h1>
+          <div class="row d-flex justify-content-center">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              {% with messages=get_flashed_messages(with_categories=true) %} {% if
+              messages %} {% for category,message in messages %}
+              <div class="alert alert-{{category}}">
+                <strong>{{message}}</strong>
+              </div>
+              {% endfor %} {% endif %} {% endwith %}
+              <div class="card">
+                <div class="card-body">
+                  <form action="" method="POST">
+                    <div class="my-2">
+                      <label for=""><b>Enter Your Email</b></label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control my-1"
+                      />
+                    </div>
+                    <div class="my-2">
+                      <label for=""><b>Enter Your Password</b></label>
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="form-control my-1"
+                      />
+                    </div>
+                    <button class="btn btn-success">Login</button>
+                    <span class="d-flex align-items-center"
+                      >If you have't Account ?
+                      <a href="/user/signup" class="text-center nav-link"
+                        >Signup</a
+                      ></span
+                    >
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </main>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-section">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="../../templates/index.html#about-section">About Us</a></li>
+        <li><a href="../../templates/index.html#how-to-play">How to Play</a></li>
+        <li><a href="../../templates/index.html#contact-section">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="#">Sign Up</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <ul>
+        <li>
+          <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+        </li>
+        <li>
+          <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </li>
+        <li>
+          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 Guess The Number. All rights reserved.</p>
+  </div>
+</footer>
 {% endblock content %}
+
+<!-- JavaScript Files -->
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<script src="../static/app.js"></script>
+
+
