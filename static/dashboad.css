@@ -161,7 +161,7 @@ label {
 
 .guess_detail {
   font-size: 20px;
-  color: rgb(54, 48, 50);
+  color: var(--darkOne);
   font-weight: bold;
 }
 
